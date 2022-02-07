@@ -1,10 +1,23 @@
 import useForm from '../hooks/useForm';
 import '../styles/styles.css';
 
-const RegisterPage = () => {
+const initialValues = {
+  name            : '',
+  email           : '',
+  password        : '',
+  confirmPassword : '',
+}
 
-  const { formValues, handleChange } = useForm()
-  const { name, email, password, confirmPassword } = formValues
+const RegisterPage = ( ) => {
+
+  const {
+    reset, 
+    handleChange,
+    name, 
+    email, 
+    password,
+    confirmPassword,
+ } = useForm(initialValues);
 
   const handleSubmit = ( e : React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -26,6 +39,7 @@ const RegisterPage = () => {
           onChange={ handleChange }
           value={ name }
         />
+
         <input 
           type="email" 
           placeholder="email"
@@ -50,6 +64,13 @@ const RegisterPage = () => {
 
         <button type="submit">
           Register
+        </button>
+
+        <button 
+          type="button"
+          onClick={ reset }
+        >
+          Reset
         </button>
       </form>
     </div>
