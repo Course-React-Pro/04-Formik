@@ -1,5 +1,8 @@
-import { Formik, Field, ErrorMessage, Form } from 'formik';
+import { Formik, Form } from 'formik';
 import * as yup from 'yup';
+import MyCheckbox from '../components/MyCheckbox';
+import MySelect from '../components/MySelect';
+import MyTextInput from '../components/MyTextInput';
 import '../styles/styles.css';
 
 const schema = yup.object().shape({
@@ -10,12 +13,12 @@ const schema = yup.object().shape({
   jobType  : yup.string().notOneOf(['Contract']).required(),
 });
 
-const FormikComponents = () => {
+const FormikAbstraction = () => {
 
 
   return (
     <div>
-      <h1>Formik Components</h1>
+      <h1>Formik Abstraction</h1>
       <Formik 
         initialValues={{
           firstName : '',
@@ -32,51 +35,43 @@ const FormikComponents = () => {
         {
           () => (
             <Form noValidate autoComplete='off'>
-              <label htmlFor="firstName">First Name</label>
-              <Field
+
+              <MyTextInput 
+                label="First Name"
                 name="firstName"
-                type="text"
                 placeholder="First Name"
-              />
-              <ErrorMessage name="firstName" component='span' />
-
-              <label htmlFor="lastName">Last Name</label>
-              <Field
-                name="lastName"
                 type="text"
+              />
+
+              <MyTextInput 
+                label="Last Name"
+                name="lastName"
                 placeholder="Last Name"
+                type="text"
               />
-              <ErrorMessage name="lastName" component='span' />
 
-              <label htmlFor="email">Email</label>
-              <Field
+              <MyTextInput 
+                label="Email"
                 name="email"
-                type="email"
                 placeholder="Email"
+                type="email"
               />
-              <ErrorMessage name="email" component='span' />
 
-
-              <label htmlFor="jobType">Job type</label>
-              <Field
-                as="select"
+              <MySelect 
+                label="Job Type"
                 name="jobType"
               >
-                <option value="">Select</option>
+                <option value="">Select a job type</option>
                 <option value="Full Time">Full Time</option>
                 <option value="Part Time">Part Time</option>
                 <option value="Contract">Contract</option>
-              </Field>
-              <ErrorMessage name="jobType" component='span' />
+              </MySelect>
 
-              <label>
-                <Field
-                  name="terms"
-                  type="checkbox"
-                />
-                I agree to the terms and conditions
-              </label>
-              <ErrorMessage name="terms" component='span' />
+
+              <MyCheckbox 
+                label='I accept the terms and conditions'
+                name='terms'
+              />
 
               <button type='submit'>Submit</button>
             </Form>
@@ -89,4 +84,4 @@ const FormikComponents = () => {
   );
 };
 
-export default FormikComponents;
+export default FormikAbstraction;
