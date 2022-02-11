@@ -11,7 +11,7 @@ const schema = yup.object().shape({
 const FormikYupPage = () => {
 
 
-  const { handleChange, values, handleSubmit, errors, touched, handleBlur } = useFormik({
+  const { handleSubmit, errors, touched, getFieldProps } = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
@@ -31,31 +31,22 @@ const FormikYupPage = () => {
       <form noValidate onSubmit={handleSubmit} autoComplete='off'>
         <label htmlFor="firstName">First Name</label>
         <input 
+          { ...getFieldProps('firstName') }
           type="text" 
-          name="firstName"
-          onBlur={handleBlur}
-          onChange={handleChange}
-          value={values.firstName}
         />
         { errors.firstName && touched.firstName && <span>{ errors.firstName }</span> }
 
         <label htmlFor="lastName">Last Name</label>
-        <input 
+        <input
+          { ...getFieldProps('lastName') }
           type="text" 
-          onBlur={handleBlur}
-          name="lastName"
-          onChange={handleChange}
-          value={values.lastName}
         />
         { errors.lastName && touched.lastName && <span>{ errors.lastName }</span> }
 
         <label htmlFor="email">Email</label>
         <input 
+          { ...getFieldProps('email') }
           type="email" 
-          onBlur={handleBlur}
-          name="email"
-          onChange={handleChange}
-          value={values.email}
         />
         { errors.email && touched.email &&  <span>{ errors.email }</span> }
 
