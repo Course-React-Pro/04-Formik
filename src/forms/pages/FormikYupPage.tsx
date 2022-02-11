@@ -1,24 +1,15 @@
-import { FormikErrors, useFormik } from 'formik';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 import '../styles/styles.css';
-interface IFormikValues {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-const FormikBasicPage = () => {
 
-  const validate = ( values: IFormikValues ) => {
-    const errors: FormikErrors<IFormikValues> = {};
-    if (!values.firstName)  errors.firstName = 'Required';
-    if (!values.lastName)  errors.lastName = 'Required';
-    if (!values.email) {
-      errors.email = 'Required';
-    } else if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Invalid email address';
-    }
+const schema = yup.object().shape({
+  firstName: yup.string().required(),
+  lastName : yup.string().required(),
+  email    : yup.string().email().required(),
+});
 
-    return errors;
-  }
+const FormikYupPage = () => {
+
 
   const { handleChange, values, handleSubmit, errors, touched, handleBlur } = useFormik({
     initialValues: {
@@ -29,13 +20,13 @@ const FormikBasicPage = () => {
     onSubmit: values => {
       console.log(values);
     },
-    validate: values => validate(values)
+    validationSchema: schema,
   })
 
 
   return (
     <div>
-      <h1>Formik Basic</h1>
+      <h1>Formik Yup</h1>
 
       <form noValidate onSubmit={handleSubmit} autoComplete='off'>
         <label htmlFor="firstName">First Name</label>
@@ -74,4 +65,4 @@ const FormikBasicPage = () => {
   );
 };
 
-export default FormikBasicPage;
+export default FormikYupPage;
