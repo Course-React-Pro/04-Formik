@@ -1,0 +1,71 @@
+[
+  {
+    "type"        : "input",
+    "name"        : "firstName",
+    "placeholder" : "First Name",
+    "label"       : "First Name",
+    "value"       : "",
+    "validation"  : [
+      {
+        "type": "required"
+      },
+      {
+        "type": "minLength",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type"        : "input",
+    "name"        : "lastName",
+    "placeholder" : "Last Name",
+    "label"       : "Last Name",
+    "value"       : "",
+    "validation"  : [
+      {
+        "type": "required"
+      }
+    ]
+  },
+  {
+    "type"        : "email",
+    "name"        : "email",
+    "placeholder" : "Email",
+    "label"       : "Email",
+    "value"       : "",
+    "validation"  : [
+      {
+        "type": "required"
+      },
+      {
+        "type": "email"
+      }
+    ]
+  },
+  {
+    "type"        : "select",
+    "name"        : "country",
+    "placeholder" : "country",
+    "label"       : "country",
+    "value"       : "",
+    "options"     : [
+      {
+        "id"  : "1",
+        "name": "United States"
+      },
+      {
+        "id"  : "2",
+        "name": "Canada"
+      },
+      {
+        "id"  : "3",
+        "name": "United Kingdom"
+      }
+    ],
+    "validation"  : [
+      {
+        "type": "required"
+      }
+    ]
+  }
+]
